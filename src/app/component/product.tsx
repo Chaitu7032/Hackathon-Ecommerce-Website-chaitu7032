@@ -1,83 +1,49 @@
-import React from 'react';
-import Image from 'next/image';
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const Product = () => {
   return (
-    <div className="w-full h-auto bg-[#FAFAFA] dark:bg-[#3A2B3C] mt-11">
+    <div className="w-full h-auto bg-[#FAFAFA] dark:bg-[#1a121c] mt-11 transition-all animate-fade-in-up">
       {/* Product Section */}
-      <section className="py-16 bg-[#FAFAFA] dark:bg-[#3A2B3C]">
+      <section className="py-16">
         <div className="container mx-auto px-6">
           {/* Centered Heading */}
-          <h3 className="text-3xl font-normal text-center text-[#2A254B] dark:text-[#FBE4EC] mb-10">
+          <h3 className="text-3xl font-bold text-center text-[#2A254B] dark:text-[#F8D7E3] mb-10">
             New Ceramics
           </h3>
 
           {/* Responsive Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
-            {/* First Product */}
-            <div className="bg-[#FAFAFA] dark:bg-[#4A324A] shadow-lg p-4 rounded-lg">
-              <Image
-                src="/chair.png"
-                alt="Chair"
-                width={500}
-                height={375}
-                className="w-full h-[375px] object-cover mb-4 rounded-md"
-              />
-              <h4 className="text-lg font-semibold text-[#2A254B] dark:text-[#FBE4EC] text-center">
-                The Dandy Chair
-              </h4>
-              <p className="text-[#2A254B] dark:text-[#FBE4EC] text-center">£250</p>
-            </div>
-
-            {/* Second Product */}
-            <div className="bg-[#FAFAFA] dark:bg-[#4A324A] shadow-lg p-4 rounded-lg">
-              <Image
-                src="/vase.png"
-                alt="Lamp"
-                width={500}
-                height={375}
-                className="w-full h-[375px] object-cover mb-4 rounded-md"
-              />
-              <h4 className="text-lg font-semibold text-[#2A254B] dark:text-[#FBE4EC] text-center">
-                The Lucky Lamp
-              </h4>
-              <p className="text-[#2A254B] dark:text-[#FBE4EC] text-center">£399</p>
-            </div>
-
-            {/* Third Product */}
-            <div className="bg-[#FAFAFA] dark:bg-[#4A324A] shadow-lg p-4 rounded-lg">
-              <Image
-                src="/botal.png"
-                alt="Vase"
-                width={500}
-                height={375}
-                className="w-full h-[375px] object-cover mb-4 rounded-md"
-              />
-              <h4 className="text-lg font-semibold text-[#2A254B] dark:text-[#FBE4EC] text-center">
-                Rustic Vase Set
-              </h4>
-              <p className="text-[#2A254B] dark:text-[#FBE4EC] text-center">£155</p>
-            </div>
-
-            {/* Fourth Product */}
-            <div className="bg-[#FAFAFA] dark:bg-[#4A324A] shadow-lg p-4 rounded-lg">
-              <Image
-                src="/lamp.png"
-                alt="Table"
-                width={500}
-                height={375}
-                className="w-full h-[375px] object-cover mb-4 rounded-md"
-              />
-              <h4 className="text-lg font-semibold text-[#2A254B] dark:text-[#FBE4EC] text-center">
-                The Stanley Table
-              </h4>
-              <p className="text-[#2A254B] dark:text-[#FBE4EC] text-center">£125</p>
-            </div>
+            {[
+              { img: "/chair.png", title: "The Dandy Chair", price: "£250" },
+              { img: "/vase.png", title: "The Lucky Lamp", price: "£399" },
+              { img: "/botal.png", title: "Rustic Vase Set", price: "£155" },
+              { img: "/lamp.png", title: "The Stanley Table", price: "£125" },
+            ].map((product, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-[#2e1f2f] shadow-lg p-4 rounded-xl hover:scale-105 transform transition-all duration-300 ease-in-out"
+              >
+                <Image
+                  src={product.img}
+                  alt={product.title}
+                  width={500}
+                  height={375}
+                  className="w-full h-[375px] object-cover mb-4 rounded-lg drop-shadow-md"
+                />
+                <h4 className="text-lg font-semibold text-[#2A254B] dark:text-[#F8D7E3] text-center">
+                  {product.title}
+                </h4>
+                <p className="text-[#2A254B] dark:text-[#F8D7E3] text-center">{product.price}</p>
+              </div>
+            ))}
           </div>
 
           {/* Centered Button */}
           <div className="flex justify-center mt-8">
-            <button className="p-4 w-[170px] h-[56px] text-[#2A254B] dark:text-[#3A2B3C] bg-gray-200 dark:bg-[#FBE4EC] border-0 focus:outline-none hover:bg-black hover:text-white dark:hover:bg-[#FFB6C1] text-lg rounded-lg transition duration-300">
+            <button className="p-4 w-[170px] h-[56px] text-[#2A254B] dark:text-[#1a121c] bg-gray-200 dark:bg-[#F8D7E3] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#1a121c] rounded-xl text-lg font-medium shadow-md transition-all duration-300">
               View collection
             </button>
           </div>

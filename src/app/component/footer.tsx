@@ -4,19 +4,14 @@ import React, { useState } from "react";
 import { RiInstagramLine } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
-import { SlSocialSkype } from "react-icons/sl";
-import { SlSocialTwitter } from "react-icons/sl";
-import { SlSocialPintarest } from "react-icons/sl";
+import { SlSocialSkype, SlSocialTwitter, SlSocialPintarest } from "react-icons/sl";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -25,117 +20,99 @@ const Footer = () => {
   };
 
   const handleSubmit = () => {
-    if (!email) {
-      setEmailError("Email is required");
-      return;
-    }
+    if (!email) return setEmailError("Email is required");
+    if (!validateEmail(email)) return setEmailError("Please enter a valid email address");
 
-    if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email address");
-      return;
-    }
-
-    // Mock successful submission
     setShowSuccess(true);
     setEmail("");
     setEmailError("");
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    setTimeout(() => setShowSuccess(false), 5000);
   };
 
   return (
-    <div>
-      {/* Footer Section */}
-      <footer className="body-font w-full bg-[#2A254B] text-[#FFFFFF]">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col-reverse md:flex-row md:text-left text-center order-first gap-2">
-            {/* Menu Column */}
-            <div className="lg:w-1/4 md:w-1/3 w-full px-4">
-              <h2 className="font-medium tracking-widest text-lg mb-3">Menu</h2>
-              <nav className="list-none mb-10 space-y-2">
-                <li><a href= "/product" className="hover:text-gray-400">New arrivals</a></li>
-                <li><a className="hover:text-gray-400">Recently viewed</a></li>
-                <li><a className="hover:text-gray-400">Popular this week</a></li>
-                <li><a href= "/productlist" className="hover:text-gray-400">All products</a></li>
-              </nav>
-            </div>
-
-            {/* Categories Column */}
-            <div className="lg:w-1/4 md:w-1/3 w-full px-4">
-              <h2 className="font-medium tracking-widest text-lg mb-3">Categories</h2>
-              <nav className="list-none mb-10 space-y-2">
-                <li><a href="/uiux" className="hover:text-gray-400">Furniture</a></li>
-                <li><a href="/homepage" className="hover:text-gray-400">Homeware</a></li>
-                <li><a href="/" className="hover:text-gray-400">Plant pots</a></li>
-                <li><a href="/about" className="hover:text-gray-400">Chairs</a></li>
-                <li><a href="/product" className="hover:text-gray-400">Crockery</a></li>
-              </nav>
-            </div>
-
-            {/* Company Column */}
-            <div className="lg:w-1/4 md:w-1/3 w-full px-4">
-              <h2 className="font-medium tracking-widest text-lg mb-3">Our Company</h2>
-              <nav className="list-none mb-10 space-y-2">
-                <li><a href= "/about" className="hover:text-gray-400">About us</a></li>
-                <li><a className="hover:text-gray-400">Vacancies</a></li>
-                <li><a className="hover:text-gray-400">Contact us</a></li>
-                <li><a className="hover:text-gray-400">Privacy</a></li>
-                <li><a className="hover:text-gray-400">Returns policy</a></li>
-              </nav>
-            </div>
-
-            {/* Mailing List Column (Right side) */}
-            <div className="lg:w-1/2 md:w-full w-full px-4">
-              <h2 className="font-medium tracking-widest text-lg mb-3 font-[Clash Display] lg:ml-10">Join Our Mailing List</h2>
-              <div className="flex flex-col items-center">
-                <div className="flex flex-wrap justify-center space-x-2 w-full">
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    value={email}
-                    onChange={handleEmailChange}
-                    className={`w-full sm:w-96 p-3 text-lg bg-[#dedbdb] mb-2 sm:mb-0 md:w-full lg:w-80 text-black ${emailError ? 'border-2 border-red-500' : ''}`}
-                    style={{ height: '50px' }}
-                  />
-                  <button 
-                    onClick={handleSubmit}
-                    className="bg-[#FAFAFA] text-[#2A254B] w-full sm:w-[90px] p-3 sm:p-1 hover:bg-[#dedbdb] sm:mt-2"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-                {emailError && (
-                  <p className="text-red-400 text-sm mt-1 w-full text-left lg:ml-10">{emailError}</p>
-                )}
-                {showSuccess && (
-  <p className="text-green-400 text-sm mt-2 font-medium tracking-wide w-full text-left lg:ml-10">
-    ✓ Thank you for subscribing to our mailing list!
-  </p>
-)}
-              </div>
-            </div>
-          </div>
+    <footer className="animate-fade-in-up w-full bg-white/30 dark:bg-gray-900/50 backdrop-blur-md text-[#2A254B] dark:text-[#FAFAFA] mt-12">
+      <div className="container mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10 lg:gap-4">
+        {/* Menu */}
+        <div className="flex-1 space-y-4">
+          <h2 className="font-semibold tracking-widest text-lg">Menu</h2>
+          <ul className="space-y-2">
+            <li><a href="/product" className="hover:text-blue-500 transition">New arrivals</a></li>
+            <li><a className="hover:text-blue-500 transition">Recently viewed</a></li>
+            <li><a className="hover:text-blue-500 transition">Popular this week</a></li>
+            <li><a href="/productlist" className="hover:text-blue-500 transition">All products</a></li>
+          </ul>
         </div>
 
-        {/* Footer Bottom Section */}
-        <div className="bg-[#2A254B] py-4">
-          <div className="container mx-auto flex justify-between items-center">
-            <p className="text-sm sm:ml-10">© Copyright 2024 MahamBabar (GIAIC)</p>
-            <div className="flex space-x-4 text-2xl sm:mr-10 sm:space-x-2 ">
-              <a href="#" className="hover:text-gray-400"><FaFacebookSquare /></a>
-              <a href="#" className="hover:text-gray-400"><RiInstagramLine /></a>
-              <a href="#" className="hover:text-gray-400"><SlSocialSkype /></a>
-              <a href="#" className="hover:text-gray-400"><SlSocialTwitter /></a>
-              <a href="#" className="hover:text-gray-400"><FaLinkedin /></a>
-              <a href="#" className="hover:text-gray-400"><SlSocialPintarest /></a>
+        {/* Categories */}
+        <div className="flex-1 space-y-4">
+          <h2 className="font-semibold tracking-widest text-lg">Categories</h2>
+          <ul className="space-y-2">
+            <li><a href="/uiux" className="hover:text-blue-500 transition">Furniture</a></li>
+            <li><a href="/homepage" className="hover:text-blue-500 transition">Homeware</a></li>
+            <li><a href="/" className="hover:text-blue-500 transition">Plant pots</a></li>
+            <li><a href="/about" className="hover:text-blue-500 transition">Chairs</a></li>
+            <li><a href="/product" className="hover:text-blue-500 transition">Crockery</a></li>
+          </ul>
+        </div>
+
+        {/* Company */}
+        <div className="flex-1 space-y-4">
+          <h2 className="font-semibold tracking-widest text-lg">Our Company</h2>
+          <ul className="space-y-2">
+            <li><a href="/about" className="hover:text-blue-500 transition">About us</a></li>
+            <li><a className="hover:text-blue-500 transition">Vacancies</a></li>
+            <li><a className="hover:text-blue-500 transition">Contact us</a></li>
+            <li><a className="hover:text-blue-500 transition">Privacy</a></li>
+            <li><a className="hover:text-blue-500 transition">Returns policy</a></li>
+          </ul>
+        </div>
+
+        {/* Mailing List */}
+        <div className="flex-1 space-y-4">
+          <h2 className="font-semibold tracking-widest text-lg">Join Our Mailing List</h2>
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap gap-2 w-full">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={handleEmailChange}
+                className={`flex-1 p-3 rounded-xl text-black dark:text-[#2A254B] bg-white/60 dark:bg-gray-800/50 backdrop-blur-sm border ${
+                  emailError ? "border-red-500" : "border-transparent"
+                } transition`}
+              />
+              <button
+                onClick={handleSubmit}
+                className="px-6 py-3 rounded-xl bg-yellow-400 hover:bg-yellow-500 text-[#2A254B] font-semibold transition transform hover:-translate-y-1"
+              >
+                Sign Up
+              </button>
             </div>
+            {emailError && <p className="text-red-400 text-sm">{emailError}</p>}
+            {showSuccess && (
+              <p className="text-green-400 text-sm font-medium tracking-wide">
+                ✓ Thank you for subscribing!
+              </p>
+            )}
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="bg-white/20 dark:bg-gray-800/40 backdrop-blur-sm py-4 mt-6">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm">&copy; 2024 MahamBabar (GIAIC)</p>
+          <div className="flex space-x-4 text-2xl">
+            <a href="#" className="hover:text-blue-500 transition"><FaFacebookSquare /></a>
+            <a href="#" className="hover:text-blue-500 transition"><RiInstagramLine /></a>
+            <a href="#" className="hover:text-blue-500 transition"><SlSocialSkype /></a>
+            <a href="#" className="hover:text-blue-500 transition"><SlSocialTwitter /></a>
+            <a href="#" className="hover:text-blue-500 transition"><FaLinkedin /></a>
+            <a href="#" className="hover:text-blue-500 transition"><SlSocialPintarest /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 
