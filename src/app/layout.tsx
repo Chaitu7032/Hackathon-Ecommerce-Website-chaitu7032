@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from './component/header';
 import Footer from "./component/footer";
 import Navbar from "./component/navbar";
 import ScrollToTop from "./component/ScrollToTop";
@@ -21,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}> {/* ✅ Moved here */}
       <body>
-        <Navbar /> {/* Navbar Component */}
-        <Header />
+  <Navbar /> {/* Navbar already includes Avion category bar; removed duplicate Header */}
         {children}
         <Footer />
         <ScrollToTop />

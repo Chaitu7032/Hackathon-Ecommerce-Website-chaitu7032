@@ -16,6 +16,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
 
@@ -127,14 +128,28 @@ export default function AuthPage() {
           </div>
 
           <div>
-            <label className="block mb-1 text-sm font-medium">Password</label>
+            <label htmlFor="password" className="block mb-1 text-sm font-medium">Password</label>
             <input
-              type="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm"
+              className="w-full px-4 py-2 rounded-md bg-white/90 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400/60 transition"
+              autoComplete={isLogin ? "current-password" : "new-password"}
             />
+            <div className="mt-2 flex items-center gap-2 select-none">
+              <input
+                id="showPassword"
+                type="checkbox"
+                checked={showPassword}
+                onChange={(e) => setShowPassword(e.target.checked)}
+                className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-500 focus:ring-indigo-400/60 cursor-pointer"
+              />
+              <label htmlFor="showPassword" className="text-xs font-medium text-gray-700 dark:text-gray-300 cursor-pointer">
+                {showPassword ? "Hide password" : "Show password"}
+              </label>
+            </div>
           </div>
 
           {error && (
@@ -143,7 +158,7 @@ export default function AuthPage() {
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition"
+            className="w-full py-2.5 px-4 rounded-xl font-semibold text-sm tracking-wide text-[#2A254B] dark:text-gray-900 bg-gradient-to-br from-yellow-400 via-amber-300 to-yellow-500 hover:from-yellow-400 hover:to-yellow-600 shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/70 active:translate-y-px"
           >
             {isLogin ? "Login" : "Sign Up"}
           </button>

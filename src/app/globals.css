@@ -9,10 +9,20 @@ html {
 
 /* Default light mode styles */
 body {
-  @apply bg-white text-black;
+  background-color: #ffffff;
+  color: #000000;
 }
+/* Hide scrollbar utility (used for horizontal nav overflow) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+/* Generic hide scrollbar alias */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* Dark mode styles when .dark is on <html> */
 .dark body {
-  @apply bg-gray-900 text-white;
+  background-color: #0f172a; /* slate-900 approximation */
+  color: #ffffff;
 }
+/* ================= Navbar Professional Styles ================= */
+
