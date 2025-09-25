@@ -1,0 +1,12 @@
+{
+  // Associate CSS files with Tailwind language features for IntelliSense and to remove unknown @tailwind warnings
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  // Silence the generic CSS linter complaining about @tailwind if any other provider still reports it
+  "css.lint.unknownAtRules": "ignore",
+  // Enable Tailwind class sorting / suggestions if the extension is installed
+  "tailwindCSS.emmetCompletions": true,
+  // Ensure Tailwind scans these additional custom paths explicitly (mirrors tailwind.config)
+  "tailwindCSS.experimental.configFile": "tailwind.config.ts"
+}

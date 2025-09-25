@@ -18,9 +18,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}> {/* ✅ Moved here */}
+    <html lang="en" className={inter.className}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('themePreference') || 'light';
+                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var resolved = theme === 'system' ? (systemDark ? 'dark' : 'light') : theme;
+                  if (resolved === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
-  <Navbar /> {/* Navbar already includes Avion category bar; removed duplicate Header */}
+        <Navbar /> {/* Navbar already includes Avion category bar; removed duplicate Header */}
         {children}
         <Footer />
         <ScrollToTop />

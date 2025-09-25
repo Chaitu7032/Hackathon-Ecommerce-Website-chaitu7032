@@ -61,7 +61,8 @@ const Navbar = () => {
     applyTheme(stored);
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const listener = () => {
-      if ((localStorage.getItem("themePreference") as any) === "system") applyTheme("system");
+      const currentPref = localStorage.getItem("themePreference");
+      if (currentPref === "system") applyTheme("system");
     };
     media.addEventListener("change", listener);
     const unsubscribe = onAuthStateChanged(auth, (u) => setUser(u));
@@ -69,7 +70,7 @@ const Navbar = () => {
       media.removeEventListener("change", listener);
       unsubscribe();
     };
-  }, [applyTheme, themePref]);
+  }, [applyTheme]); // Remove themePref from dependency array
 
   useEffect(() => {
     if (!showThemeMenu) return;
@@ -112,7 +113,7 @@ const Navbar = () => {
   return (
     <nav className="w-full sticky top-0 z-50 font-[system-ui]">
       {/* Primary bar */}
-      <div className="bg-white/85 dark:bg-gray-900/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-gray-700/60 shadow-sm">
+  <div className="relative z-40 bg-white/85 dark:bg-gray-900/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-gray-700/60 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 lg:px-10 h-16">
           {/* Brand */}
           <Link href="/" className="flex flex-col leading-none select-none group shrink-0">
@@ -268,7 +269,7 @@ const Navbar = () => {
       </div>
 
       {/* Avion category bar (desktop) */}
-      <div className="hidden md:block bg-white/80 dark:bg-gray-900/60 backdrop-blur-xl border-b border-slate-200/60 dark:border-gray-700/60">
+  <div className="hidden md:block relative z-10 bg-white/80 dark:bg-gray-900/60 backdrop-blur-xl border-b border-slate-200/60 dark:border-gray-700/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-3 flex flex-col gap-3">
           <h2 className="text-center text-xl font-semibold tracking-wide text-slate-800 dark:text-slate-100">Avion</h2>
           <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium">
