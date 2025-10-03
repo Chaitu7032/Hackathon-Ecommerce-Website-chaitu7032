@@ -1,40 +1,35 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Hero from "./component/hero";
 import Card1 from "./component/card1";
 import Product from "./component/product";
-import ProductTwo from "./component/product2";
-import CardLast from "./component/lastcard";
-// import DenyChair from "./component/denychair";
-import  SignUp from "./component/signup";
-import About from "./about/page";
-import HomePage from "./homepage/page";
-import Page from "./product/page";
-import ProductListing from "./productlist/page";
-import ShoppingCart from "./shopping/page";
-import EcommerceUI from "./uiux/page"
+import MainLayout from "./component/MainLayout";
 
-// import { Component } from "react";/
-
+// Dynamically load below-the-fold sections to reduce First Load JS
+const ProductTwo = dynamic(() => import('./component/product2'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-neutral-200/40 dark:bg-neutral-700/40 rounded" aria-label="Loading product section" />,
+  ssr: true,
+});
+const SignUp = dynamic(() => import('./component/signup'), {
+  loading: () => <div className="h-72 w-full animate-pulse bg-neutral-200/40 dark:bg-neutral-700/40 rounded" aria-label="Loading signup" />,
+  ssr: true,
+});
+const CardLast = dynamic(() => import('./component/lastcard'), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-neutral-200/40 dark:bg-neutral-700/40 rounded" aria-label="Loading collection" />,
+  ssr: true,
+});
 
 export default function Home() {
   return (
-   <div>
-    {/* <Component /> */}
-    <Hero />
-    <Card1/>
-    <Product />
-    <ProductTwo />
-    <SignUp />
-    <CardLast />
-  
-    {/* <DenyChair />     */}
-    
-    {/* <About /> */}
-    {/* <HomePage /> */}
-    {/* <Page /> */}
-    {/* <ProductListing /> */}
-    {/* <ShoppingCart /> */}
-    </div>
- 
+    <MainLayout>
+      <div>
+        <Hero />
+        <Card1 />
+        <Product />
+        <ProductTwo />
+        <SignUp />
+        <CardLast />
+      </div>
+    </MainLayout>
   );
 }

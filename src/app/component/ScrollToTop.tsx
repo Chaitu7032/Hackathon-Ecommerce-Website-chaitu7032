@@ -1,20 +1,24 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./ScrollToTop.module.css"; // import CSS module
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 200) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldShow = window.scrollY > 200;
+            setVisible(prev => prev !== shouldShow ? shouldShow : prev);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {

@@ -6,7 +6,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section
         className="relative bg-cover bg-center w-full h-[277px] bg-[#FFFFFF] dark:bg-[#FCE8F5]"
-        style={{ backgroundImage: "url('path_to_your_image.jpg')" }}
+  style={{ backgroundImage: "url('/bg1.jpg')" }}
       >
         <div className="absolute inset-0 bg-[#FFFFFF] dark:bg-[#FCE8F5] w-full sm:w-[80%] md:w-[70%] lg:w-[60%] h-full mt-[52px] ml-6 sm:ml-12 md:ml-16 lg:ml-24"></div>
         <div className="container mx-auto px-4 py-24 w-full flex justify-between items-center relative text-center text-[#2A254B] dark:text-[#2A254B]">

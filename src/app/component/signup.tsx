@@ -36,7 +36,7 @@ const SignUp = () => {
   return (
     <section
       className="relative bg-cover bg-center w-full h-[481px] md:h-[550px] lg:h-[550px]"
-      style={{ backgroundImage: "url('path_to_your_image.jpg')" }}
+      style={{ backgroundImage: "url('/signbg.png')" }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-white dark:bg-[#ffe4e6] opacity-60 md:opacity-80 lg:opacity-80"></div>

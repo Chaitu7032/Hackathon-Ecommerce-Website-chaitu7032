@@ -56,10 +56,10 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Menu</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a href= "/product" className="hover:text-gray-400">New arrivals</a></li>
-                <li><a className="hover:text-gray-400">Recently viewed</a></li>
-                <li><a className="hover:text-gray-400">Popular this week</a></li>
-                <li><a href= "/productlist" className="hover:text-gray-400">All products</a></li>
+                <li><a href="/product" className="hover:text-gray-400">New arrivals</a></li>
+                <li><span aria-disabled="true" className="cursor-not-allowed text-gray-400">Recently viewed</span></li>
+                <li><span aria-disabled="true" className="cursor-not-allowed text-gray-400">Popular this week</span></li>
+                <li><a href="/productlist" className="hover:text-gray-400">All products</a></li>
               </nav>
             </div>
 
@@ -67,11 +67,11 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Categories</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a href="/uiux" className="hover:text-gray-400">Furniture</a></li>
-                <li><a href="/homepage" className="hover:text-gray-400">Homeware</a></li>
-                <li><a href="/" className="hover:text-gray-400">Plant pots</a></li>
-                <li><a href="/about" className="hover:text-gray-400">Chairs</a></li>
-                <li><a href="/product" className="hover:text-gray-400">Crockery</a></li>
+                <li><a href="/category/plant-pots" className="hover:text-gray-400">Plant Pots</a></li>
+                <li><a href="/category/ceramics" className="hover:text-gray-400">Ceramics</a></li>
+                <li><a href="/category/tables" className="hover:text-gray-400">Tables</a></li>
+                <li><a href="/category/chairs" className="hover:text-gray-400">Chairs</a></li>
+                <li><a href="/category/crockery" className="hover:text-gray-400">Crockery</a></li>
               </nav>
             </div>
 
@@ -79,11 +79,11 @@ const Footer = () => {
             <div className="lg:w-1/4 md:w-1/3 w-full px-4">
               <h2 className="font-medium tracking-widest text-lg mb-3">Our Company</h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a href= "/about" className="hover:text-gray-400">About us</a></li>
-                <li><a className="hover:text-gray-400">Vacancies</a></li>
+                <li><a href="/about" className="hover:text-gray-400">About us</a></li>
+                <li><span aria-disabled="true" className="cursor-not-allowed text-gray-400">Vacancies</span></li>
                 <li><a href="/contact" className="hover:text-gray-400">Contact us</a></li>
-                <li><a className="hover:text-gray-400">Privacy</a></li>
-                <li><a className="hover:text-gray-400">Returns policy</a></li>
+                <li><span aria-disabled="true" className="cursor-not-allowed text-gray-400">Privacy</span></li>
+                <li><span aria-disabled="true" className="cursor-not-allowed text-gray-400">Returns policy</span></li>
               </nav>
             </div>
 

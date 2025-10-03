@@ -140,7 +140,7 @@ const ProductTwo = () => {
       </div>
 
       {/* Newsletter Section */}
-      <section className="relative bg-cover bg-center w-full h-[481px]" style={{ backgroundImage: "url('/path_to_your_image.jpg')" }}>
+  <section className="relative bg-cover bg-center w-full h-[481px]" style={{ backgroundImage: "url('/bg1.jpg')" }}>
         <div className="absolute inset-0 bg-[#2A1A1F] opacity-70"></div>
 
         <div className="container mx-auto px-4 py-24 relative text-center">

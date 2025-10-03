@@ -1,0 +1,24 @@
+# Browsers that we support for modern e-commerce website
+
+# Production: Modern browsers only
+> 1%
+last 2 versions
+not dead
+
+# No support for legacy browsers
+not ie <= 11
+not op_mini all
+
+# Modern features support
+supports es6-module
+supports es6-module-dynamic-import
+
+# Mobile browsers (e-commerce friendly)
+iOS >= 14
+Android >= 8
+
+# Modern desktop browsers
+Chrome >= 90
+Firefox >= 88
+Safari >= 14
+Edge >= 90
